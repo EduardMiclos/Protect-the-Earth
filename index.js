@@ -42,6 +42,9 @@ var progress = document.getElementById('progress');
 // Getting the play button.
 var play_btn = document.getElementById("play");
 
+// Getting protect the earth text.
+var protect = document.getElementById("protect-earth")
+
 // Getting the menu.
 var menu = document.getElementById("menu");
 
@@ -58,7 +61,7 @@ var EarthRadius = 200;
 var Asteroids = [];
 var Particles = [];
 var CURR_LEVEL = 1;
-var MAX_LEVEL = 5;
+var MAX_LEVEL = 4;
 var TIME;
 var timeout;
 
@@ -172,7 +175,7 @@ function clearScreen(){
 }
 
 function resetTime(level){
-    TIME = 10*level;
+    TIME = 30*level;
 }
 
 function createParticle(asteroid){
@@ -200,24 +203,31 @@ function MAIN(){
     // Drawing the image of the Earth in the center of the canvas and the image of stars.
     renderBackground();
 
-    
-    Asteroids.forEach((asteroid) =>{
-        asteroid.draw(ctx);
-        asteroid.update()
-        
-        if(TIME <= 1){
+    if(TIME <= 1){
+        if(CURR_LEVEL === MAX_LEVEL){
+            endGame(animationID)
+            protect.innerHTML = "You did it! You saved the Earth!";
+            play_btn.innerHTML = "Play again!";
+            displayUIMenu('flex', 'none');    
+        }
+        else{
             levelUp();
             resetTime(CURR_LEVEL);
         }
+    }
+
+    if(CURR_LEVEL == MAX_LEVEL && TIME < 15){
+        clearTimeout(timeout)
+    }
+
+    Asteroids.forEach((asteroid) =>{
+        asteroid.draw(ctx);
+        asteroid.update()
 
         if(hit(asteroid)){
             endGame(animationID)
             displayUIMenu('flex', 'none');
             clearTimeout(timeout);
-        }
-
-        if(CURR_LEVEL == MAX_LEVEL && TIME < 15){
-            clearTimeout(timeout)
         }
         
     })
