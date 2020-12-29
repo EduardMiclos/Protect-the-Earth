@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    body{
+        margin: 0;
+        background-color: gray;
+    }
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protect the Earth</title>
+</head>
+
+<body>
+    
+    <div class="fixed inset-0 flex items-center justify-center" id="menu">
+        <div class="bg-white max-w-md w-full p-2 text-center rounded-sm">
+            <p class="md:text-lf font-semibold mb-2">Protect the Earth!</p>
+            <div>
+                <button class="bg-green-400	px-10 rounded-sm hover:bg-green-300 outline-none font-semibold w-full" id="play">Play!</button>
+            </div>
+        </div>
+    </div>
+    <img style="display: none;" src="./earth.png" id="earth">
+    <img style="display: none;" src="./stars.png" id="stars">
+
+    <div class="fixed text-white ml-5 mt-5 md:text-lg select-none" style="display:none;" id="progress">
+         <span>Time:</span> 
+         <span id="time">0</span><br>
+         <span>Level:</span> 
+         <span id="level">1</span>
+    </div>
+
+    <canvas>
+    </canvas>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" 
+integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" 
+crossorigin="anonymous"></script>
+<script type="module" src="index.js"></script>
+</html>
